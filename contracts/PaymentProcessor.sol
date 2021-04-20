@@ -1,9 +1,5 @@
 pragma solidity >=0.4.22 <0.9.0;
 
-import "./SafeMath.sol";
-import "./SafeMathInt.sol";
-import "./UrblongToken.sol";
-
 contract PaymentProcessor {
     address public admin;
     UrblongToken public urb;
