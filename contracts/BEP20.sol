@@ -1,4 +1,4 @@
-pragma solidity >=0.4.23 <0.9.0;
+pragma solidity >=0.4.22 <0.6.0;
 
 // based on https://github.com/OpenZeppelin/openzeppelin-solidity/tree/v1.10.0
 /**
@@ -441,54 +441,3 @@ contract PausableToken is StandardToken, Pausable {
   }
 }
 
-contract URBToken is PausableToken, MintableToken {
-    // public variables
-    string public name = "Urblong";
-    string public symbol = "URB";
-    uint8 public decimals = 18;
-
-    constructor() public {
-        totalSupply_ = 1000000 * (10 ** uint256(decimals));
-    }
-
-    function () external payable {
-        revert();
-    }
-}
-
-contract BUSDToken is PausableToken, MintableToken {
-    // public variables
-    string public name = "Binance USD";
-    string public symbol = "BUSD";
-    uint8 public decimals = 18;
-
-    constructor() public {
-        totalSupply_ = 5000000000 * (10 ** uint256(decimals));
-    }
-
-    function () external payable {
-        revert();
-    }
-}
-
-contract PaymentProcessor {
-    address public admin;
-    BUSDToken public busd;
-
-    event PaymentDone(
-        address payer,
-        uint256 amount,
-        uint256 paymentId,
-        uint256 date
-    );
-
-    constructor(address adminAddress, address urbAddress) public {
-        admin = adminAddress;
-        busd = BUSDToken(urbAddress);
-    }
-
-    function pay(uint256 amount, uint256 paymentId) external {
-        urb.transferFrom(msg.sender, admin, amount);
-        emit PaymentDone(msg.sender, amount, paymentId, block.timestamp);
-    }
-}
