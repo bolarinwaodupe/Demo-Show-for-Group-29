@@ -4,7 +4,7 @@ import "./BEP20.sol";
 
 contract BUSDToken is PausableToken, MintableToken {
     // public variables
-    string public name = "Binance USD";
+    string public name = "Mock Binance USD";
     string public symbol = "BUSD";
     uint8 public decimals = 18;
 
